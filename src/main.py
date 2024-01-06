@@ -1,3 +1,4 @@
-from pretty import printLogo
+from pretty import printLogo, printOptions, chosenColor
 
-printLogo("green")
+printLogo(chosenColor("yellow"))
+printOptions(chosenColor("yellow"))
