@@ -9,7 +9,6 @@ LOGGED_IN_POP3 = ""
 LOGGED_IN_IMAP = ""
 LOGGED_IN_WITH = ', '.join(['NOT LOGGED IN' if s == '' else s for s in [LOGGED_IN_SMTP, LOGGED_IN_POP3, LOGGED_IN_IMAP]])
 
-
 def printLogo(color: str):
     text_color = getattr(Fore, color.upper())
  
@@ -29,7 +28,7 @@ ___('v')___     |xx|_|xx||xxxxxxx||xxx|___  |xxxxxxx||xx|_|xx||xxxxxxx|  |xxx|  
 
 def printOptions(color: str):
     text_color = getattr(Fore, color.upper())
-
+    text_color_padding = makePadding(text_color)
 
     NONE_STRNG = ""
     SMTP_HEADER, POP3_HEADER, IMAP_HEADER = "~ SMTP OPTIONS ~", "~ POP3 OPTIONS ~", "~ IMAP OPTIONS ~"
@@ -47,8 +46,7 @@ def printOptions(color: str):
     SMTP_BORADO, POP3_BORADO, IMAP_BORADO = " [.10]  Mail bomb random     (domain)", " [.10]  Mail bomb random     (domain)", " [.10]  Mail bomb random     (domain)"
     SMTP_BORADS, POP3_BORADS, IMAP_BORADS = " [.10]  Mail bomb randoms    (domain)", " [.10]  Mail bomb randoms    (domain)", " [.10]  Mail bomb randoms    (domain)"
 
-    interface = f"""{text_color}
-╔{NONE_STRNG:═^38}╗ ╔{NONE_STRNG:═^38}╗ ╔{NONE_STRNG:═^38}╗
+    interface = f"""{text_color_padding}{text_color}╔{NONE_STRNG:═^38}╗ ╔{NONE_STRNG:═^38}╗ ╔{NONE_STRNG:═^38}╗
 ║{SMTP_HEADER:^38}║ ║{POP3_HEADER:^38}║ ║{IMAP_HEADER:^38}║
 ╠{NONE_STRNG:═^38}╣ ╠{NONE_STRNG:═^38}╣ ╠{NONE_STRNG:═^38}╣
 ║{NONE_STRNG: ^38}║ ║{NONE_STRNG: ^38}║ ║{NONE_STRNG: ^38}║
@@ -67,10 +65,8 @@ def printOptions(color: str):
 ║{SMTP_BORADS:<38}║ ║{POP3_BORADS:<38}║ ║{IMAP_BORADS:<38}║
 ║{NONE_STRNG: ^38}║ ║{NONE_STRNG: ^38}║ ║{NONE_STRNG: ^38}║
 ╚{NONE_STRNG:═^38}╝ ╚{NONE_STRNG:═^38}╝ ╚{NONE_STRNG:═^38}╝"""
-    
-    printCentered(interface)
-    
 
+    printCentered(interface)
 
 # HELPER FUNCTIONS
     
@@ -93,3 +89,6 @@ def makeBold(str: str) -> str:
 
 def numberBoarder(num: str) -> str:
     return f'{Fore.YELLOW}[{Fore.GREEN}{num}{Fore.YELLOW}]{Fore.RESET}'
+
+def makePadding(str: str) -> str:
+    return " " * len(str)
